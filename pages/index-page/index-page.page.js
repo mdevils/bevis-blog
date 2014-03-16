@@ -1,7 +1,22 @@
 module.exports = function (pages) {
     pages.declare('index-page', function (params) {
+
+        // Количество статей на одной странице
+        var PAGELENGTH = 20;
+
+        // Количество страниц с учётом PAGELENGTH
+        var pageCount = params.data.posts.getPageCount(PAGELENGTH);
+
+        // Номер текущей страницы
         var pageNumber = parseInt(params.path.split('/').pop()) || 1;
-        var posts = params.data.posts.selectPostsForPage(pageNumber, 20);
+
+        // Посты для текущей страницы
+        var posts = params.data.posts.selectPostsForPage(pageNumber, PAGELENGTH);
+
+        // Номера для предыдущей и следущей старницы
+        var nextPageNumber = (pageNumber < pageCount) ? pageNumber + 1 : pageCount;
+        var prevPageNumber = (pageNumber > 2) ? pageNumber - 1 : 1;
+
         return {
             block: 'page',
             title: 'Блог',
@@ -32,7 +47,10 @@ module.exports = function (pages) {
                     })
                 },
                 {
-                    block: 'pager'
+                    block: 'pager',
+                    nextPage: nextPageNumber,
+                    prevPage: prevPageNumber,
+                    currPage: pageNumber,
                 },
                 {
                     block: 'footer'

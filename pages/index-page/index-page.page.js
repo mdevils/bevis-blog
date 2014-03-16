@@ -26,9 +26,16 @@ module.exports = function (pages) {
                             title: post.getTitle(),
                             url: params.root + '/' + post.getLink(),
                             body: post.getShortHtmlBody(),
+                            date: post.getDate().toLocaleDateString(),
                             hasMoreButton: post.hasShortBody()
                         }
                     })
+                },
+                {
+                    block: 'pager'
+                },
+                {
+                    block: 'footer'
                 }
             ]
         };

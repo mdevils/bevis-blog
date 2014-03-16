@@ -25,6 +25,9 @@ module.exports = function (pages) {
                     body: post.getHtmlBody(),
                     title: post.getTitle(),
                     readingNow: true
+                },
+                {
+                    block: 'footer'
                 }
             ]
         };

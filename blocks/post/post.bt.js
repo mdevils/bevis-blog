@@ -1,12 +1,17 @@
 module.exports = function (bt) {
 
     bt.match('post', function (ctx) {
+
         ctx.setContent([
             {
                 elem: 'title',
                 title: ctx.getParam('title'),
                 url: ctx.getParam('url'),
                 readingNow: ctx.getParam('readingNow')
+            },
+            {
+                elem: 'date',
+                date: ctx.getParam('date')
             },
             {
                 elem: 'body',
@@ -38,6 +43,10 @@ module.exports = function (bt) {
         ctx.setAttr('href', ctx.getParam('url'));
 
         ctx.setContent(ctx.getParam('content'));
+    });
+
+    bt.match('post__date', function (ctx) {
+        ctx.setContent(String(ctx.getParam('date')));
     });
 
     bt.match('post__body', function (ctx) {

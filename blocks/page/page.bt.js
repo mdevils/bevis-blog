@@ -19,7 +19,9 @@ module.exports = function (bt) {
                 return {
                     elem: 'css',
                     url: style.url,
-                    ie: style.ie
+                    ie: style.ie,
+                    media: style.media,
+                    rules: style.rules
                 };
             });
         }
@@ -37,6 +39,13 @@ module.exports = function (bt) {
                                     elem: 'meta',
                                     charset: 'utf-8'
                                 },
+                                ctx.getParam('meta') && ctx.getParam('meta').map(function (meta){
+                                    return {
+                                        elem: 'meta',
+                                        name: meta.name,
+                                        content: meta.content
+                                    }
+                                }),
                                 {
                                     elem: 'title',
                                     content: ctx.getParam('title')
@@ -97,6 +106,7 @@ module.exports = function (bt) {
     bt.match('page__meta', function (ctx) {
         ctx.setTag('meta');
         ctx.disableCssClassGeneration();
+        ctx.setAttr('name', ctx.getParam('name'));
         ctx.setAttr('content', ctx.getParam('content'));
         ctx.setAttr('http-equiv', ctx.getParam('http-equiv'));
         ctx.setAttr('charset', ctx.getParam('charset'));
@@ -126,6 +136,8 @@ module.exports = function (bt) {
     bt.match('page__css', function (ctx) {
         ctx.disableCssClassGeneration();
         var url = ctx.getParam('url');
+        var media = ctx.getParam('media');
+        var rules = ctx.getParam('rules');
 
         if (url) {
             ctx.setTag('link');
@@ -133,6 +145,11 @@ module.exports = function (bt) {
             ctx.setAttr('href', url);
         } else {
             ctx.setTag('style');
+            ctx.setContent(rules);
+        }
+
+        if (media) {
+            ctx.setAttr('media', media);
         }
 
         var ie = ctx.getParam('ie');

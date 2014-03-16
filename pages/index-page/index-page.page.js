@@ -1,36 +1,29 @@
 module.exports = function (pages) {
     pages.declare('index-page', function (params) {
-        var options = params.options;
+        var pageNumber = parseInt(params.path.split('/').pop()) || 1;
+        var posts = params.data.posts.selectPostsForPage(pageNumber, 20);
         return {
             block: 'page',
-            title: 'Index page',
+            title: 'Блог',
             styles: [
-                {url: options.assetsPath + '.css'}
+                {url: params.assetsPath + '.css'}
             ],
             scripts: [
-                {url: options.assetsPath + '.js'}
+                {url: params.assetsPath + '.js'}
             ],
             body: [
                 {
                     block: 'layout',
-                    aside: {
-                        block: 'sidebar',
-
-                        title: 'Привет, BEViS!',
-                        resources: [
-                            {
-                                text: 'Репозиторий',
-                                url: 'https://github.com/bevis-ui/'
-                            },
-                            {
-                                text: 'Учебник для новичков',
-                                url: 'https://github.com/bevis-ui/docs/blob/master/manual-for-beginner.md'
-                            },
-                            {
-                                text: 'Учебник для старичков',
-                                url: 'https://github.com/bevis-ui/docs/blob/master/manual-for-master.md'
-                            },
-                        ]
+                    logoUrl: params.root,
+                    content: {
+                        block: 'post-list',
+                        posts: posts.map(function (post) {
+                            return {
+                                block: 'post',
+                                title: post.getTitle(),
+                                body: post.getShortHtmlBody()
+                            }
+                        })
                     }
                 }
             ]

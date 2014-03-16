@@ -1,0 +1,17 @@
+---
+author: makishvili
+comments: true
+date: 2013-02-26 11:38:22+00:00
+layout: post
+slug: pelageya
+title: Пелагея и Дарья Мороз "Ой, да не вечер"
+wordpress_id: 1657
+categories:
+- life
+---
+{% youtube l1TzJm1BD2I %}
+
+А вот мужское исполнение. Ох, сильно как.
+
+{% youtube OiiaY9iRaAM %}
+

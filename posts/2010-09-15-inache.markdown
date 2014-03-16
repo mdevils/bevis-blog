@@ -1,0 +1,17 @@
+---
+author: makishvili
+comments: true
+date: 2010-09-15 08:39:18+00:00
+layout: post
+slug: inache
+title: Иначе
+wordpress_id: 1441
+categories:
+- life
+tags:
+- музыка
+---
+
+Группа "Бигуди". Название странное, музыка хорошая.
+
+

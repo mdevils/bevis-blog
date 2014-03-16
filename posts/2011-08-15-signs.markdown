@@ -1,0 +1,15 @@
+---
+author: makishvili
+comments: true
+date: 2011-08-15 19:18:05+00:00
+layout: post
+slug: signs
+title: '"Знаки". Рассказ'
+wordpress_id: 1598
+categories:
+- life
+tags:
+- моя проза
+---
+
+[Читать](http://makishvili.com/books/signs.html)

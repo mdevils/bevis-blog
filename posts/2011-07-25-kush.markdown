@@ -1,0 +1,15 @@
+---
+author: makishvili
+comments: true
+date: 2011-07-25 20:16:49+00:00
+layout: post
+slug: kush
+title: '"Сандалики на тонком ремешке". Рассказ'
+wordpress_id: 1575
+categories:
+- life
+tags:
+- моя проза
+---
+
+[Прочитать](http://makishvili.com/books/kush.html)

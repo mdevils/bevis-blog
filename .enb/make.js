@@ -1,9 +1,5 @@
 module.exports = function (config) {
-    config.setLanguages(['ru']);
-
-    config.nodes('build/*');
-
-    config.nodeMask(/^build\/.*$/, function (nodeConfig) {
+    config.node('build', function (nodeConfig) {
         nodeConfig.addTechs([
             [require('enb/techs/levels'), {levels: getLevels()}],
             [require('enb/techs/file-provider'), {target: '?.bemdecl.js'}],
@@ -11,10 +7,11 @@ module.exports = function (config) {
             require('enb/techs/files'),
             require('enb-stylus/techs/css-stylus-with-autoprefixer'),
             require('enb-bt/techs/bt-server'),
-            require('enb/techs/js'),
+            [require('enb/techs/js'), {target: '?.pre.js'}],
+            [require('enb-modules/techs/prepend-modules'), {source : '?.pre.js', target: '?.js'}],
             require('./techs/page')
         ]);
-        nodeConfig.addTargets(["_?.js", "_?.css"]);
+        nodeConfig.addTargets(["_?.js", "_?.css", "?.page.js", "?.bt.js"]);
 
         nodeConfig.mode('development', function(nodeConfig) {
             nodeConfig.addTechs([

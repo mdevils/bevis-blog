@@ -42,4 +42,4 @@ block:
 
 # Run application in development mode
 app-dev:
-	@$(NPM_BIN)/supervisor -w server,configs -- server/boot.js
+	@$(NPM_BIN)/supervisor -w lib -- lib/app.js

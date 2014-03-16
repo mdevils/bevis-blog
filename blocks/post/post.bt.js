@@ -11,6 +11,10 @@ module.exports = function (bt) {
             {
                 elem: 'body',
                 body: ctx.getParam('body')
+            },
+            (ctx.getParam('hasMoreButton') && !ctx.getParam('readingNow')) && {
+                elem: 'more',
+                url: ctx.getParam('url')
             }
         ])
     });
@@ -38,5 +42,12 @@ module.exports = function (bt) {
 
     bt.match('post__body', function (ctx) {
         ctx.setContent(ctx.getParam('body'));
+    });
+
+    bt.match('post__more', function (ctx) {
+        ctx.setTag('a');
+        ctx.setAttr('href', ctx.getParam('url'));
+
+        ctx.setContent('Читать дальше →');
     });
 };

@@ -24,6 +24,7 @@ module.exports = function (pages) {
                     block: 'post',
                     body: post.getHtmlBody(),
                     title: post.getTitle(),
+                    date: post.getDate().toLocaleDateString(),
                     readingNow: true
                 },
                 {

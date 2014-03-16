@@ -3,16 +3,12 @@ module.exports = function (bt) {
     bt.match('pager', function (ctx) {
 
         ctx.setContent([
-            {
+            ctx.getParam('nextPage') && {
                 elem: 'link',
                 number: ctx.getParam('nextPage'),
                 text: '← Назад в прошлое'
             },
-            {
-                elem: 'link',
-                text: 'На главную'
-            },
-            {
+            ctx.getParam('prevPage') && {
                 elem: 'link',
                 number: ctx.getParam('prevPage'),
                 text: 'Вперёд в настоящее →'
@@ -24,11 +20,9 @@ module.exports = function (bt) {
 
         ctx.setTag('a');
 
-        var href = '/';
-        if (ctx.getParam('number')) {
-            href='/page/' + ctx.getParam('number');
-        }
-
+        // Если 1 - сделай href на корень проекта.
+        // Для красоты, ни для чего больше.
+        var href = (ctx.getParam('number') === 1 ) ? '/' : '/page/' + ctx.getParam('number');
         ctx.setAttr('href', href);
 
         ctx.setContent(ctx.getParam('text'));

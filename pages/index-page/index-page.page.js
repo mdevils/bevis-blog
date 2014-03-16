@@ -13,9 +13,10 @@ module.exports = function (pages) {
         // Посты для текущей страницы
         var posts = params.data.posts.selectPostsForPage(pageNumber, PAGELENGTH);
 
-        // Номера для предыдущей и следущей старницы
-        var nextPageNumber = (pageNumber < pageCount) ? pageNumber + 1 : pageCount;
-        var prevPageNumber = (pageNumber > 2) ? pageNumber - 1 : 1;
+        // Номера для предыдущей и следующей старницы
+        // null чтобы для этих случаев не генерились кнопки
+        var nextPageNumber = (pageNumber < pageCount) && (pageNumber + 1) || null;
+        var prevPageNumber = (pageNumber > 1) && (pageNumber - 1) || null;
 
         return {
             block: 'page',

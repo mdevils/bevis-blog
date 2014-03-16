@@ -13,19 +13,21 @@ module.exports = function (pages) {
             ],
             body: [
                 {
-                    block: 'layout',
-                    logoUrl: params.root,
-                    content: {
-                        block: 'post-list',
-                        posts: posts.map(function (post) {
-                            return {
-                                block: 'post',
-                                title: post.getTitle(),
-                                url: params.root + '/' + post.getLink(),
-                                body: post.getShortHtmlBody()
-                            }
-                        })
-                    }
+                    block: 'header',
+                    title: 'Вадим Макишвили',
+                    titleUrl: params.root,
+                    slogan: 'Вглядываясь в смыслы'
+                },
+                {
+                    block: 'post-list',
+                    posts: posts.map(function (post) {
+                        return {
+                            block: 'post',
+                            title: post.getTitle(),
+                            url: params.root + '/' + post.getLink(),
+                            body: post.getShortHtmlBody()
+                        }
+                    })
                 }
             ]
         };

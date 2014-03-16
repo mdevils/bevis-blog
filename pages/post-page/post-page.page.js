@@ -15,14 +15,16 @@ module.exports = function (pages) {
             ],
             body: [
                 {
-                    block: 'layout',
-                    logoUrl: params.root,
-                    content: {
-                        block: 'post',
-                        body: post.getHtmlBody(),
-                        title: post.getTitle(),
-                        readingNow: true
-                    }
+                    block: 'header',
+                    title: 'Вадим Макишвили',
+                    titleUrl: params.root,
+                    slogan: 'Вглядываясь в смыслы'
+                },
+                {
+                    block: 'post',
+                    body: post.getHtmlBody(),
+                    title: post.getTitle(),
+                    readingNow: true
                 }
             ]
         };

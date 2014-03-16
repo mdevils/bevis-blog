@@ -21,6 +21,7 @@ module.exports = function (pages) {
                             return {
                                 block: 'post',
                                 title: post.getTitle(),
+                                url: params.root + '/' + post.getLink(),
                                 body: post.getShortHtmlBody()
                             }
                         })

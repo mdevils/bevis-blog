@@ -2,7 +2,12 @@ module.exports = function (bt) {
 
     bt.match('post', function (ctx) {
         ctx.setContent([
-            {elem: 'title', title: ctx.getParam('title'), selected: ctx.getParam('selected')},
+            {
+                elem: 'title',
+                title: ctx.getParam('title'),
+                url: ctx.getParam('url'),
+                selected: ctx.getParam('selected')
+            },
             {elem: 'body', body: ctx.getParam('body')}
         ])
     });
@@ -13,7 +18,18 @@ module.exports = function (bt) {
         } else {
             ctx.setTag('h2');
         }
-        ctx.setContent(ctx.getParam('title'));
+        ctx.setContent({
+            elem: 'title-link',
+            url: ctx.getParam('url'),
+            content: ctx.getParam('title')
+        });
+    });
+
+    bt.match('post__title-link', function (ctx) {
+        ctx.setTag('a');
+        ctx.setAttr('href', ctx.getParam('url'));
+
+        ctx.setContent(ctx.getParam('content'));
     });
 
     bt.match('post__body', function (ctx) {

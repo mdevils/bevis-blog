@@ -6,23 +6,27 @@ module.exports = function (bt) {
                 elem: 'title',
                 title: ctx.getParam('title'),
                 url: ctx.getParam('url'),
-                selected: ctx.getParam('selected')
+                readingNow: ctx.getParam('readingNow')
             },
-            {elem: 'body', body: ctx.getParam('body')}
+            {
+                elem: 'body',
+                body: ctx.getParam('body')
+            }
         ])
     });
 
     bt.match('post__title', function (ctx) {
-        if (ctx.getParam('selected')) {
+        if (ctx.getParam('readingNow')) {
             ctx.setTag('h1');
+            ctx.setContent(ctx.getParam('title'));
         } else {
             ctx.setTag('h2');
+            ctx.setContent({
+                elem: 'title-link',
+                url: ctx.getParam('url'),
+                content: ctx.getParam('title')
+            });
         }
-        ctx.setContent({
-            elem: 'title-link',
-            url: ctx.getParam('url'),
-            content: ctx.getParam('title')
-        });
     });
 
     bt.match('post__title-link', function (ctx) {

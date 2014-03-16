@@ -21,7 +21,7 @@ module.exports = function (pages) {
                         block: 'post',
                         body: post.getHtmlBody(),
                         title: post.getTitle(),
-                        selected: true
+                        readingNow: true
                     }
                 }
             ]

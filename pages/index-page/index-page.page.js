@@ -34,6 +34,11 @@ module.exports = function (pages) {
                     titleUrl: params.root,
                     slogan: 'Вглядываясь в смыслы'
                 },
+/*
+                {
+                    block: 'menu'
+                },
+*/
                 {
                     block: 'post-list',
                     posts: posts.map(function (post) {

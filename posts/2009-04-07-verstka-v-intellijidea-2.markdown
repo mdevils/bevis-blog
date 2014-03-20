@@ -614,7 +614,7 @@ At-символ — шоткат для быстрого создания имп
 На мой взляд, IntelliJIDEA — единственный редактор, который так элегантно, ненавязчиво и эффективно позволяет а) не допускать ошибки валидации и б) исправлять их очень быстро.
 
 
-## Кириллица в CSS-селекторах
+### Кириллица в CSS-селекторах
 
 
 Завершая тему Инспекторов Кода.
@@ -811,7 +811,7 @@ CSS Refactoring
 А теперь коротенько о разнообразных IDEA-вкусностях словами самих JetBrains-овцев и будем заканчивать.
 
 
-## Размер картинок
+### Размер картинок
 
 
 Работая в IntelliJIDEA, вам не нужно думать о реальных размерах контентных картинок. Вам сообщат :)
@@ -819,7 +819,7 @@ CSS Refactoring
 ![Image size](http://www.jetbrains.com/idea/features/img/imgSizeCheckFix.gif)
 
 
-## Инспекция HTML-атрибутов
+### Инспекция HTML-атрибутов
 
 
 Работая в IntelliJIDEA, у вас не получится написать один и тот же атрибут дважды. Вам сообщат :)
@@ -827,7 +827,7 @@ CSS Refactoring
 ![](http://www.jetbrains.com/idea/features/img/duplicateAttributeHTML_smal.gif)
 
 
-## Инспекция CSS-свойств и селекторов
+### Инспекция CSS-свойств и селекторов
 
 
 Работая в IntelliJIDEA, у вас не получится ошибиться в написании CSS-свойств, их значений и, например, псевдоклассов
@@ -847,7 +847,7 @@ CSS Refactoring
 ![](http://www.jetbrains.com/idea/features/screenshots/80/cssColorRefactoring.gif)
 
 
-## Show Applied Styles for Tag
+### Show Applied Styles for Tag
 
 
 Не выходя из IntelliJIDEA, вы всегда сможете увидеть CSS-стили, которые применяются к нужному вам HTML-элементу
@@ -855,7 +855,7 @@ CSS Refactoring
 ![](http://www.jetbrains.com/idea/features/img/tagAppliedStyles_small.gif)
 
 
-## CSS Autocomplete
+### CSS Autocomplete
 
 
 Помните, я говорил, что IntelliJIDEA в XML-е подсказывает имена использованных элементов? Ну так вот, в CSS вы имеете то же самое — вам подскажут имена существующих CSS-классов
@@ -863,7 +863,7 @@ CSS Refactoring
 ![css-autocomplete](http://www.jetbrains.com/idea/features/img/cssClassCompletion_small.gif)
 
 
-## Хлебные крошки в HTML/XHTML
+### Хлебные крошки в HTML/XHTML
 
 
 Работая в IntelliJIDEA, вы не заблудитесь в чужом неряшливом коде. Вас выведут по хлебным крошкам
@@ -871,7 +871,7 @@ CSS Refactoring
 ![Хлебные крошки](http://www.jetbrains.com/idea/features/screenshots/70/htmlCrumbs.gif)
 
 
-## Navigation Bar
+### Navigation Bar
 
 
 Работая в IntelliJIDEA, вы всегда можете получить доступ к нужному вам файлу, не открывая Project Panel. Вам поможет плавающая панели навигации **Fn Alt ArrowLeft**
@@ -879,7 +879,7 @@ CSS Refactoring
 ![Navigation Bar](http://www.jetbrains.com/idea/features/screenshots/60/NaviBar.jpg)
 
 
-## Javascript debugger
+### Javascript debugger
 
 
 В своей работе я не пишу такие скрипты, которые требуют дебага, потому что у меня такая специализация, что production-скрипты пишу не я, а другие крутые парни. Поэтому про дебаг я не могу ничего от себя рассказать. Но то, что он есть, и судя по видео, он удобен, я вам сказать могу :)
@@ -888,7 +888,7 @@ CSS Refactoring
 А еще обязательно загляните на страничку с [описанием поддержки Javascript](http://www.jetbrains.com/idea/features/javascript_editor.html). Там вам будет чему порадоваться :)
 
 
-## Взаимодействие с Eclipse
+### Взаимодействие с Eclipse
 
 
 
@@ -899,7 +899,7 @@ CSS Refactoring
 Познакомиться с этой функциональностью можно [здесь](http://www.jetbrains.com/idea/features/eclipse_java.html)
 
 
-## Единые настройки для команды
+### Единые настройки для команды
 
 
 В версии 8.1 появилась возможность хранить все свои настройки IntelliJIDEA [на IDEA Sharing Server](http://www.jetbrains.net/devnet/docs/DOC-1143). Сейчас туда можно только логиниться под своим аккаунтом. Но скоро настройки среды можно будет шарить в команде и между командами.

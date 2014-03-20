@@ -24,7 +24,7 @@ Web IDE is available in 2 editions:
 
  
 > 
-> ## Standard Edition
+> ### Standard Edition
 > 
 > with following key features:
 
@@ -53,7 +53,7 @@ Web IDE is available in 2 editions:
 
 
 > 
-> ## PHP Developer Edition
+> ### PHP Developer Edition
 > 
 > adding the following to the standard edition:
 

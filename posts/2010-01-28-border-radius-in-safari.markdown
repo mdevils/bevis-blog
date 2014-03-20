@@ -15,7 +15,7 @@ tags:
 В Safari столкнулся с неаккуратным рендерингом элемента, если ему задан  border-radius и  фоновый цвет. Увидеть проблему и её решение можно на [тестовой странице](http://makishvili.com/code/border-radius-in-safari.html).
 
 
-## Решение
+### Решение
 
 1. Фоновый цвет у блока убрать
 
@@ -53,7 +53,7 @@ tags:
 
 
 
-## Update
+### Update
 
 
 ![](http://makishvili.com/images/post/2010-01-28-border-radius-in-safari/bor-safari.png)

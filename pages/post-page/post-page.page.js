@@ -1,9 +1,12 @@
 module.exports = function (pages) {
     pages.declare('post-page', function (params) {
-        var post = params.data.posts.findByPath(params.path);
+        var filePath = decodeURIComponent(params.path);
+        var post = params.data.posts.findByPath(filePath);
+
         if (!post) {
-            throw Error('Post not found: ' + params.path);
+            throw Error('Post not found: ' + filePath);
         }
+
         return {
             block: 'page',
             title: post.getTitle(),

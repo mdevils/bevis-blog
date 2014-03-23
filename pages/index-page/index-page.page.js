@@ -3,49 +3,42 @@ module.exports = function (pages) {
         // Количество статей на одной странице
         var PAGELENGTH = 20;
 
-        var requestedUrl = params.path;
+        var requestPath = params.path;
         var allPosts = params.data.posts;
 
         // Количество страниц с учётом PAGELENGTH
         var pageCount = allPosts.getPageCount(PAGELENGTH);
 
+        // Раскладываем запрошенный урл на фрагменты
+        var requestPathBits = requestPath.split('/');
+
         // Номер текущей страницы
-        var pageNumber = parseInt(requestedUrl.split('/').pop()) || 1;
+        var pageNumber = 1;
+        // Фильтр для категории или тега
+        var postFilter = null;
+        // Имя запрошенной категории
+        var categoryName = null;
+        // Имя запрошенного тега
+        var tagName = null;
 
-        var filterByCategories = function (post) {
-            // Фильтруем все категории в этой статье
-            var isCategoryMatched = post._params.categories && post._params.categories.some(function (category) {
-                return filteredWord === category;
-            });
-
-            return isCategoryMatched ? true : false ;
-        };
-
-        var filterByTags = function (post) {
-            // Фильтруем все категории в этой статье
-            var isTagMatched = post._params.tags && post._params.tags.some(function (tag) {
-                return filteredWord === tag;
-            });
-
-            return isTagMatched ? true : false ;
-        };
-
-        var filteredWord;
-        var filterCallback;
-        if (requestedUrl.indexOf('category/') !== -1) {
-            filteredWord = requestedUrl.replace('category/', '');
-            if (filteredWord) {
-                filterCallback = filterByCategories;
-            }
-        } else if (requestedUrl.indexOf('tag/') !== -1) {
-            filteredWord = requestedUrl.replace('tag/', '');
-            if (filteredWord) {
-                filterCallback = filterByTags;
+        while (pathBit = requestPathBits.shift()) {
+            switch (pathBit) {
+                case 'category':
+                    categoryName = requestPathBits.shift();
+                    postFilter = function (post) { return post.getCategories().indexOf(categoryName) !== -1; }
+                    break;
+                case 'tag':
+                    tagName = requestPathBits.shift();
+                    postFilter = function (post) { return post.getTags().indexOf(tagName) !== -1; }
+                    break;
+                case 'page':
+                    pageNumber = parseInt(requestPathBits.shift()) || 1;
+                    break;
             }
         }
 
         // Посты для текущей страницы
-        var posts = allPosts.selectPostsForPage(pageNumber, PAGELENGTH, filterCallback);
+        var posts = allPosts.selectPostsForPage(pageNumber, PAGELENGTH, postFilter);
 
         // Номера для предыдущей и следующей старницы
         // null чтобы для этих случаев не генерились кнопки

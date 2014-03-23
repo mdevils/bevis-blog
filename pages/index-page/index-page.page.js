@@ -3,23 +3,49 @@ module.exports = function (pages) {
         // Количество статей на одной странице
         var PAGELENGTH = 20;
 
-        var requestedPostPath = params.path;
+        var requestedUrl = params.path;
         var allPosts = params.data.posts;
 
         // Количество страниц с учётом PAGELENGTH
         var pageCount = allPosts.getPageCount(PAGELENGTH);
 
         // Номер текущей страницы
-        var pageNumber = parseInt(requestedPostPath.split('/').pop()) || 1;
+        var pageNumber = parseInt(requestedUrl.split('/').pop()) || 1;
 
-        var requestedCategory;
-        if (params.path.indexOf('category/') !== -1) {
-            // получить значение категории из урла
-            requestedCategory = requestedPostPath.replace('category/', '');
+        var filterByCategories = function (post) {
+            // Фильтруем все категории в этой статье
+            var isCategoryMatched = post._params.categories && post._params.categories.some(function (category) {
+                return filteredWord === category;
+            });
+
+            return isCategoryMatched ? true : false ;
+        };
+
+        var filterByTags = function (post) {
+            // Фильтруем все категории в этой статье
+            var isTagMatched = post._params.tags && post._params.tags.some(function (tag) {
+                return filteredWord === tag;
+            });
+
+            return isTagMatched ? true : false ;
+        };
+
+        var filteredWord;
+        var filterCallback;
+        if (requestedUrl.indexOf('category/') !== -1) {
+            filteredWord = requestedUrl.replace('category/', '');
+            if (filteredWord) {
+                filterCallback = filterByCategories;
+            }
+        } else if (requestedUrl.indexOf('tag/') !== -1) {
+            filteredWord = requestedUrl.replace('tag/', '');
+            if (filteredWord) {
+                filterCallback = filterByTags;
+            }
         }
 
         // Посты для текущей страницы
-        var posts = allPosts.selectPostsForPage(pageNumber, PAGELENGTH, requestedCategory);
+        var posts = allPosts.selectPostsForPage(pageNumber, PAGELENGTH, filterCallback);
 
         // Номера для предыдущей и следующей старницы
         // null чтобы для этих случаев не генерились кнопки

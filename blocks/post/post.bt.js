@@ -70,7 +70,7 @@ module.exports = function (bt) {
             return {
                 elem: 'category',
                 text: category,
-                url: '/category/' + category
+                url: '/category/' + encodeURIComponent(category)
             };
         }));
     });
@@ -78,7 +78,6 @@ module.exports = function (bt) {
     bt.match('post__category', function (ctx) {
         ctx.setTag('a');
         ctx.setAttr('href', ctx.getParam('url'));
-
         ctx.setContent(ctx.getParam('text'));
     });
 };

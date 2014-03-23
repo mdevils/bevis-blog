@@ -22,15 +22,17 @@ module.exports = function (pages) {
         while (pathBit = requestPathBits.shift()) {
             switch (pathBit) {
                 case 'category':
-                    categoryName = requestPathBits.shift();
+                    categoryName = decodeURIComponent(requestPathBits.shift());
                     postFilter = function (post) { return post.getCategories().indexOf(categoryName) !== -1; }
-                    pagerPrefix =  ['/', pathBit, '/', categoryName, '/'].join('');
+                    pagerPrefix =  ['/', pathBit, '/', decodeURIComponent(categoryName), '/'].join('');
                     break;
+
                 case 'tag':
-                    tagName = requestPathBits.shift();
+                    tagName = decodeURIComponent(requestPathBits.shift());
                     postFilter = function (post) { return post.getTags().indexOf(tagName) !== -1; }
                     pagerPrefix =  ['/', pathBit, '/', categoryName, '/'].join('');
                     break;
+
                 case 'page':
                     pageNumber = parseInt(requestPathBits.shift()) || 1;
                     break;
@@ -75,7 +77,7 @@ module.exports = function (pages) {
                         return {
                             block: 'post',
                             title: post.getTitle(),
-                            url: params.root + '/' + post.getLink(),
+                            url: decodeURIComponent(params.root + '/' + post.getLink()),
                             body: post.getShortHtmlBody(),
                             date: post.getDate().toLocaleDateString(),
                             hasMoreButton: post.hasShortBody(),

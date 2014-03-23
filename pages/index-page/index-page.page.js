@@ -33,6 +33,11 @@ module.exports = function (pages) {
                     pagerPrefix =  ['/', pathBit, '/', categoryName, '/'].join('');
                     break;
 
+                case 'archive':
+                    // Эквивалент бесконечности :)
+                    PAGELENGTH = 100000;
+                    break;
+
                 case 'page':
                     pageNumber = parseInt(requestPathBits.shift()) || 1;
                     break;
@@ -70,7 +75,8 @@ module.exports = function (pages) {
                     block: 'menu',
                     links: [
                         { page: 'Главная', url: '/' },
-                        { page: 'Презентации', url: '/category/presentation' }
+                        { page: 'Презентации', url: '/category/presentation' },
+                        { page: 'Архив', url: '/archive' }
                     ]
                 },
                 {

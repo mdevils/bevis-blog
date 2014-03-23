@@ -25,7 +25,8 @@ module.exports = function (pages) {
                     body: post.getHtmlBody(),
                     title: post.getTitle(),
                     date: post.getDate().toLocaleDateString(),
-                    readingNow: true
+                    readingNow: true,
+                    categories: post.getCategories()
                 },
                 {
                     block: 'footer'

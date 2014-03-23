@@ -9,6 +9,10 @@ module.exports = function (bt) {
                 url: ctx.getParam('url'),
                 readingNow: ctx.getParam('readingNow')
             },
+            ctx.getParam('categories') &&  {
+                elem: 'categories',
+                categories: ctx.getParam('categories')
+            },
             {
                 elem: 'date',
                 date: ctx.getParam('date')
@@ -58,5 +62,23 @@ module.exports = function (bt) {
         ctx.setAttr('href', ctx.getParam('url'));
 
         ctx.setContent('Читать дальше →');
+    });
+
+    bt.match('post__categories', function (ctx) {
+        var categories = ctx.getParam('categories');
+        ctx.setContent(categories.map(function (category, i) {
+            return {
+                elem: 'category',
+                text: category,
+                url: '/category/' + category
+            };
+        }));
+    });
+
+    bt.match('post__category', function (ctx) {
+        ctx.setTag('a');
+        ctx.setAttr('href', ctx.getParam('url'));
+
+        ctx.setContent(ctx.getParam('text'));
     });
 };

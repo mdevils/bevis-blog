@@ -1,4 +1,6 @@
 .post {
+    position: relative;
+
     width: 800px;
     margin: 0px auto 120px;
 
@@ -47,5 +49,23 @@
         color: #aaa;
         line-height: 1em;
         text-align: left;
+    }
+        
+    &__categories {
+        position: absolute;
+        right: 0;
+
+        font-size: 90%;
+    }
+        
+    &__category {
+        color: #65a672;
+    }
+
+    &__category:not(:last-child)::after {
+        display: inline-block;
+        content: ",";
+        width: 10px;
+        height: 10px;
     }
 }

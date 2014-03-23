@@ -6,25 +6,28 @@ module.exports = function (bt) {
             ctx.getParam('nextPage') && {
                 elem: 'link',
                 number: ctx.getParam('nextPage'),
-                text: '← Назад в прошлое'
+                text: '← Назад в прошлое',
+                prefix: ctx.getParam('pathPrefix')
             },
             ctx.getParam('prevPage') && {
                 elem: 'link',
                 number: ctx.getParam('prevPage'),
-                text: 'Вперёд в настоящее →'
+                text: 'Вперёд в настоящее →',
+                prefix: ctx.getParam('pathPrefix')
             }
         ]);
     });
 
     bt.match('pager__link', function (ctx) {
 
+        var prefix = ctx.getParam('prefix');
+        var pageNumber = ctx.getParam('number');
+        var pagePath = prefix + 'page/' + pageNumber;
+
+        var href = pageNumber === 1 ? prefix : pagePath;
+
         ctx.setTag('a');
-
-        // Если 1 - сделай href на корень проекта.
-        // Для красоты, ни для чего больше.
-        var href = (ctx.getParam('number') === 1 ) ? '/' : '/page/' + ctx.getParam('number');
         ctx.setAttr('href', href);
-
         ctx.setContent(ctx.getParam('text'));
     });
 

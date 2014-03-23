@@ -1,13 +1,10 @@
 module.exports = function (pages) {
     pages.declare('index-page', function (params) {
         // Количество статей на одной странице
-        var PAGELENGTH = 20;
+        var PAGELENGTH = 2;
 
         var requestPath = params.path;
         var allPosts = params.data.posts;
-
-        // Количество страниц с учётом PAGELENGTH
-        var pageCount = allPosts.getPageCount(PAGELENGTH);
 
         // Раскладываем запрошенный урл на фрагменты
         var requestPathBits = requestPath.split('/');
@@ -21,15 +18,18 @@ module.exports = function (pages) {
         // Имя запрошенного тега
         var tagName = null;
 
+        var pagerPrefix = '/';
         while (pathBit = requestPathBits.shift()) {
             switch (pathBit) {
                 case 'category':
                     categoryName = requestPathBits.shift();
                     postFilter = function (post) { return post.getCategories().indexOf(categoryName) !== -1; }
+                    pagerPrefix =  ['/', pathBit, '/', categoryName, '/'].join('');
                     break;
                 case 'tag':
                     tagName = requestPathBits.shift();
                     postFilter = function (post) { return post.getTags().indexOf(tagName) !== -1; }
+                    pagerPrefix =  ['/', pathBit, '/', categoryName, '/'].join('');
                     break;
                 case 'page':
                     pageNumber = parseInt(requestPathBits.shift()) || 1;
@@ -40,12 +40,13 @@ module.exports = function (pages) {
         // Посты для текущей страницы
         var posts = allPosts.selectPostsForPage(pageNumber, PAGELENGTH, postFilter);
 
+        // Количество страниц с учётом PAGELENGTH и фильтрации по тегам/категориям
+        var pageCount = allPosts.getPageCount(PAGELENGTH, postFilter);
+
         // Номера для предыдущей и следующей старницы
         // null чтобы для этих случаев не генерились кнопки
         var nextPageNumber = pageNumber < pageCount ? pageNumber + 1 : null;
         var prevPageNumber = pageNumber > 1 ? pageNumber - 1 : null;
-
-
 
         return {
             block: 'page',
@@ -87,6 +88,7 @@ module.exports = function (pages) {
                     nextPage: nextPageNumber,
                     prevPage: prevPageNumber,
                     currPage: pageNumber,
+                    pathPrefix: pagerPrefix
                 },
                 {
                     block: 'footer'

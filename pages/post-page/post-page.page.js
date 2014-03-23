@@ -24,6 +24,13 @@ module.exports = function (pages) {
                     slogan: 'Вглядываясь в смыслы'
                 },
                 {
+                    block: 'menu',
+                    links: [
+                        { page: 'Главная', url: '/' },
+                        { page: 'Презентации', url: '/category/presentation' }
+                    ]
+                },
+                {
                     block: 'post',
                     body: post.getHtmlBody(),
                     title: post.getTitle(),

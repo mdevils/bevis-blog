@@ -66,11 +66,13 @@ module.exports = function (pages) {
                     titleUrl: params.root,
                     slogan: 'Вглядываясь в смыслы'
                 },
-/*
                 {
-                    block: 'menu'
+                    block: 'menu',
+                    links: [
+                        { page: 'Главная', url: '/' },
+                        { page: 'Презентации', url: '/category/presentation' }
+                    ]
                 },
-*/
                 {
                     block: 'post-list',
                     posts: posts.map(function (post) {

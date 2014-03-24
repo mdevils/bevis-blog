@@ -22,7 +22,7 @@ module.exports = function (pages) {
                     block: 'menu',
                     links: [
                         { page: 'Главная', url: '/' },
-                        { page: 'Презентации', url: '/category/presentation' },
+                        { page: 'Презентации', url: '/presentation' },
                         { page: 'Архив', url: '/archive' }
                     ]
                 },

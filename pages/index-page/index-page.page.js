@@ -1,7 +1,7 @@
 module.exports = function (pages) {
     pages.declare('index-page', function (params) {
         // Количество статей на одной странице
-        var PAGELENGTH = 30;
+        var PAGELENGTH = 20;
 
         var requestPath = params.path;
         var allPosts = params.data.posts;
@@ -11,12 +11,15 @@ module.exports = function (pages) {
 
         // Номер текущей страницы
         var pageNumber = 1;
+
         // Фильтр для категории или тега
         var postFilter = null;
         // Имя запрошенной категории
         var categoryName = null;
         // Имя запрошенного тега
         var tagName = null;
+        //  Заголовок страницы
+        var titlePage = null;
 
         var pagerPrefix = '/';
         while (pathBit = requestPathBits.shift()) {
@@ -25,17 +28,20 @@ module.exports = function (pages) {
                     categoryName = decodeURIComponent(requestPathBits.shift());
                     postFilter = function (post) { return post.getCategories() && post.getCategories().indexOf(categoryName) !== -1; }
                     pagerPrefix =  ['/', pathBit, '/', decodeURIComponent(categoryName), '/'].join('');
+                    titlePage = "Категория статей: " + categoryName;
                     break;
 
                 case 'tag':
                     tagName = decodeURIComponent(requestPathBits.shift());
                     postFilter = function (post) { return post.getTags() && post.getTags().indexOf(tagName) !== -1; }
                     pagerPrefix =  ['/', pathBit, '/', categoryName, '/'].join('');
+                    titlePage = "Тема статей: " + tagName;
                     break;
 
-                case 'archive':
-                    // Эквивалент бесконечности :)
-                    PAGELENGTH = 100000;
+                case 'presentation':
+                    postFilter = function (post) { return post.getCategories() && post.getCategories().indexOf('presentation') !== -1; }
+                    pagerPrefix =  ['/', pathBit, '/'].join('');
+                    titlePage = "Мои доклады и презентации";
                     break;
 
                 case 'page':
@@ -75,9 +81,13 @@ module.exports = function (pages) {
                     block: 'menu',
                     links: [
                         { page: 'Главная', url: '/' },
-                        { page: 'Презентации', url: '/category/presentation' },
+                        { page: 'Презентации', url: '/presentation' },
                         { page: 'Архив', url: '/archive' }
                     ]
+                },
+                titlePage && {
+                    block: 'title',
+                    text: titlePage
                 },
                 {
                     block: 'post-list',

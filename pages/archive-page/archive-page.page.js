@@ -1,6 +1,7 @@
 module.exports = function (pages) {
     pages.declare('archive-page', function (params) {
-        var posts = params.data.posts;
+        var posts = params.data.posts.getPosts();
+
         return {
             block: 'page',
             title: 'Все статьи',

@@ -1,7 +1,7 @@
 module.exports = function (pages) {
     pages.declare('index-page', function (params) {
         // Количество статей на одной странице
-        var PAGELENGTH = 2;
+        var PAGELENGTH = 30;
 
         var requestPath = params.path;
         var allPosts = params.data.posts;

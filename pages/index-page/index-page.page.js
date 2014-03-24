@@ -65,10 +65,13 @@ module.exports = function (pages) {
             block: 'page',
             title: 'Блог',
             styles: [
-                {url: params.assetsPath + '.css'}
+                {url: params.assetsPath + '.css'},
+                {url: 'http://yandex.st/highlightjs/8.0/styles/github.min.css'}
             ],
             scripts: [
-                {url: params.assetsPath + '.js'}
+                {url: params.assetsPath + '.js'},
+                {url: 'http://yandex.st/highlightjs/8.0/highlight.min.js'},
+                {source: 'hljs.initHighlightingOnLoad();'}
             ],
             body: [
                 {

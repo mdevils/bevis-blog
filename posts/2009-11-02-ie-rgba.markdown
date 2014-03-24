@@ -26,7 +26,8 @@ categories:
     }
     * html .block
     {
-        filter:progid:DXImageTransform.Microsoft.gradient (startColorstr=#99000000, endColorstr=#99000000);
+        filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000,
+               endColorstr=#99000000);
     }
 
 
@@ -53,7 +54,8 @@ categories:
     }
     * html .block
     {
-        filter:progid:DXImageTransform.Microsoft.gradient (startColorstr=#00ffffff, endColorstr=#ffffffff, GradientType=1);
+        filter:progid:DXImageTransform.Microsoft.gradient (startColorstr=#00ffffff,
+               endColorstr=#ffffffff, GradientType=1);
     }
 
 

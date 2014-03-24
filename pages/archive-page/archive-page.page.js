@@ -27,6 +27,10 @@ module.exports = function (pages) {
                     ]
                 },
                 {
+                    block: 'title',
+                    text: 'Архив'
+                },
+                {
                     block: 'post-list',
                     posts: posts.map(function (post) {
                         return {

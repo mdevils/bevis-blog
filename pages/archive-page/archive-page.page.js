@@ -34,8 +34,7 @@ module.exports = function (pages) {
                             view: 'archive',
                             title: post.getTitle(),
                             url: decodeURIComponent(params.root + '/' + post.getLink()),
-                            date: post.getDate().toLocaleDateString(),
-                            categories: post.getCategories()
+                            date: post.getDate().toLocaleDateString()
                         }
                     })
                 },

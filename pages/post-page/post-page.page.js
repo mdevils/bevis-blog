@@ -27,7 +27,8 @@ module.exports = function (pages) {
                     block: 'menu',
                     links: [
                         { page: 'Главная', url: '/' },
-                        { page: 'Презентации', url: '/category/presentation' }
+                        { page: 'Презентации', url: '/category/presentation' },
+                        { page: 'Архив', url: '/archive' }
                     ]
                 },
                 {
@@ -36,7 +37,8 @@ module.exports = function (pages) {
                     title: post.getTitle(),
                     date: post.getDate().toLocaleDateString(),
                     readingNow: true,
-                    categories: post.getCategories()
+                    categories: post.getCategories(),
+                    tags: post.getTags()
                 },
                 {
                     block: 'footer'

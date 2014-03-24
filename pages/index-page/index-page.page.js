@@ -23,13 +23,13 @@ module.exports = function (pages) {
             switch (pathBit) {
                 case 'category':
                     categoryName = decodeURIComponent(requestPathBits.shift());
-                    postFilter = function (post) { return post.getCategories().indexOf(categoryName) !== -1; }
+                    postFilter = function (post) { return post.getCategories() && post.getCategories().indexOf(categoryName) !== -1; }
                     pagerPrefix =  ['/', pathBit, '/', decodeURIComponent(categoryName), '/'].join('');
                     break;
 
                 case 'tag':
                     tagName = decodeURIComponent(requestPathBits.shift());
-                    postFilter = function (post) { return post.getTags().indexOf(tagName) !== -1; }
+                    postFilter = function (post) { return post.getTags() && post.getTags().indexOf(tagName) !== -1; }
                     pagerPrefix =  ['/', pathBit, '/', categoryName, '/'].join('');
                     break;
 

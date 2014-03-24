@@ -1,6 +1,8 @@
 module.exports = function (bt) {
 
-    bt.match('post', function (ctx) {
+    bt.setDefaultView('post', 'main');
+
+    bt.match('post*', function (ctx) {
 
         ctx.setContent([
             {
@@ -28,7 +30,7 @@ module.exports = function (bt) {
         ])
     });
 
-    bt.match('post__title', function (ctx) {
+    bt.match('post*__title', function (ctx) {
         if (ctx.getParam('readingNow')) {
             ctx.setTag('h1');
             ctx.setContent(ctx.getParam('title'));
@@ -42,29 +44,29 @@ module.exports = function (bt) {
         }
     });
 
-    bt.match('post__title-link', function (ctx) {
+    bt.match('post*__title-link', function (ctx) {
         ctx.setTag('a');
         ctx.setAttr('href', ctx.getParam('url'));
 
         ctx.setContent(ctx.getParam('content'));
     });
 
-    bt.match('post__date', function (ctx) {
+    bt.match('post*__date', function (ctx) {
         ctx.setContent(String(ctx.getParam('date')));
     });
 
-    bt.match('post__body', function (ctx) {
+    bt.match('post*__body', function (ctx) {
         ctx.setContent(ctx.getParam('body'));
     });
 
-    bt.match('post__more', function (ctx) {
+    bt.match('post*__more', function (ctx) {
         ctx.setTag('a');
         ctx.setAttr('href', ctx.getParam('url'));
 
         ctx.setContent('Читать дальше →');
     });
 
-    bt.match('post__categories', function (ctx) {
+    bt.match('post*__categories', function (ctx) {
         var categories = ctx.getParam('categories');
         ctx.setContent(categories.map(function (category, i) {
             return {
@@ -75,7 +77,7 @@ module.exports = function (bt) {
         }));
     });
 
-    bt.match('post__category', function (ctx) {
+    bt.match('post*__category', function (ctx) {
         ctx.setTag('a');
         ctx.setAttr('href', ctx.getParam('url'));
         ctx.setContent(ctx.getParam('text'));

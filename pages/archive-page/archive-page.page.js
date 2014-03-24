@@ -31,6 +31,7 @@ module.exports = function (pages) {
                     posts: posts.map(function (post) {
                         return {
                             block: 'post',
+                            view: 'archive',
                             title: post.getTitle(),
                             url: decodeURIComponent(params.root + '/' + post.getLink()),
                             date: post.getDate().toLocaleDateString(),

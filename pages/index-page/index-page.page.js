@@ -111,9 +111,7 @@ module.exports = function (pages) {
                     currPage: pageNumber,
                     pathPrefix: pagerPrefix
                 },
-                {
-                    block: 'footer'
-                }
+                { block: 'footer' }
             ]
         };
     });

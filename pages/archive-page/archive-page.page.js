@@ -42,9 +42,7 @@ module.exports = function (pages) {
                         }
                     })
                 },
-                {
-                    block: 'footer'
-                }
+                { block: 'footer' }
             ]
         };
     });

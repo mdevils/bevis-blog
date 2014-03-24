@@ -14,7 +14,8 @@ module.exports = function (pages) {
                 {url: params.assetsPath + '.css'}
             ],
             scripts: [
-                {url: params.assetsPath + '.js'}
+                {url: params.assetsPath + '.js'},
+                {url: '//bevisblog.disqus.com/embed.js'}
             ],
             body: [
                 {
@@ -40,9 +41,8 @@ module.exports = function (pages) {
                     categories: post.getCategories(),
                     tags: post.getTags()
                 },
-                {
-                    block: 'footer'
-                }
+                { block: 'comments' },
+                { block: 'footer' }
             ]
         };
     });

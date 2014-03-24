@@ -89,7 +89,8 @@ module.exports = function (pages) {
                             body: post.getShortHtmlBody(),
                             date: post.getDate().toLocaleDateString(),
                             hasMoreButton: post.hasShortBody(),
-                            categories: post.getCategories()
+                            categories: post.getCategories(),
+                            tags: post.getTags()
                         }
                     })
                 },

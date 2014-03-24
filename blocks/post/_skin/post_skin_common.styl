@@ -50,18 +50,26 @@ post_skin_common() {
         text-align: left;
     }
 
-    &__categories {
+    &__categories,
+    &__tags {
         position: absolute;
         right: 0;
 
         font-size: 90%;
     }
 
-    &__category {
+    &__categories-label,
+    &__tags-label {
+        color: #aaa;
+    }
+
+    &__category,
+    &__tag {
         color: #65a672;
     }
 
-    &__category:not(:last-child)::after {
+    &__category:not(:last-child)::after,
+    &__tag:not(:last-child)::after {
         display: inline-block;
         content: ",";
         width: 10px;

@@ -11,10 +11,16 @@ module.exports = function (bt) {
                 url: ctx.getParam('url'),
                 readingNow: ctx.getParam('readingNow')
             },
+            ctx.getParam('tags') &&  {
+                elem: 'tags',
+                tags: ctx.getParam('tags')
+            },
+/*
             ctx.getParam('categories') &&  {
                 elem: 'categories',
                 categories: ctx.getParam('categories')
             },
+*/
             {
                 elem: 'date',
                 date: ctx.getParam('date')
@@ -68,7 +74,7 @@ module.exports = function (bt) {
 
     bt.match('post*__categories', function (ctx) {
         var categories = ctx.getParam('categories');
-        ctx.setContent(categories.map(function (category, i) {
+        ctx.setContent(categories.map(function (category) {
             return {
                 elem: 'category',
                 text: category,
@@ -77,9 +83,31 @@ module.exports = function (bt) {
         }));
     });
 
-    bt.match('post*__category', function (ctx) {
+    bt.match('post*__tags', function (ctx) {
+        var tags = ctx.getParam('tags');
+        ctx.setContent([
+            {
+                elem: 'tags-label',
+                text: 'Темы: '
+            },
+            tags.map(function (tag) {
+                return {
+                    elem: 'tag',
+                    text: tag,
+                    url: '/tag/' + encodeURIComponent(tag)
+                };
+            })
+        ]);
+    });
+
+    bt.match(['post*__category', 'post*__tag'], function (ctx) {
         ctx.setTag('a');
         ctx.setAttr('href', ctx.getParam('url'));
+        ctx.setContent(ctx.getParam('text'));
+    });
+
+    bt.match(['post*__tags-label', 'post*__categories-label'], function (ctx) {
+        ctx.setTag('span');
         ctx.setContent(ctx.getParam('text'));
     });
 };
